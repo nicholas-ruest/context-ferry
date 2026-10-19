@@ -1,0 +1,12 @@
+[package]
+name = "cf-recovery"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cf-capsule = { version = "0.1.0", path = "../cf-capsule" }
+serde.workspace = true

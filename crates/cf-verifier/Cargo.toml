@@ -1,0 +1,13 @@
+[package]
+name = "cf-verifier"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cf-transfer = { version = "0.1.0", path = "../cf-transfer" }
+cf-rvf = { version = "0.1.0", path = "../cf-rvf" }
+thiserror.workspace = true

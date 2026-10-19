@@ -1,0 +1,31 @@
+[package]
+name = "cf-orchestrator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cf-types = { version = "0.1.0", path = "../cf-types" }
+cf-request = { version = "0.1.0", path = "../cf-request" }
+cf-events = { version = "0.1.0", path = "../cf-events" }
+cf-policy = { version = "0.1.0", path = "../cf-policy" }
+cf-tiktoken = { version = "0.1.0", path = "../cf-tiktoken" }
+cf-memory = { version = "0.1.0", path = "../cf-memory" }
+cf-selection = { version = "0.1.0", path = "../cf-selection" }
+cf-conformal = { version = "0.1.0", path = "../cf-conformal" }
+cf-capsule = { version = "0.1.0", path = "../cf-capsule" }
+cf-rvf = { version = "0.1.0", path = "../cf-rvf" }
+cf-ledger = { version = "0.1.0", path = "../cf-ledger" }
+cf-transfer = { version = "0.1.0", path = "../cf-transfer" }
+cf-verifier = { version = "0.1.0", path = "../cf-verifier" }
+cf-recovery = { version = "0.1.0", path = "../cf-recovery" }
+cf-telemetry = { version = "0.1.0", path = "../cf-telemetry" }
+cf-ruflo = { version = "0.1.0", path = "../cf-ruflo" }
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

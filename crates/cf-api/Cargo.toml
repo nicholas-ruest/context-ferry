@@ -1,0 +1,15 @@
+[package]
+name = "cf-api"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cf-orchestrator = { version = "0.1.0", path = "../cf-orchestrator" }
+cf-evaluation = { version = "0.1.0", path = "../cf-evaluation" }
+cf-metaharness = { version = "0.1.0", path = "../cf-metaharness" }
+serde_json.workspace = true
+thiserror.workspace = true

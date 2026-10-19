@@ -1,0 +1,94 @@
+{
+  "metaharness": {
+    "authority": "none",
+    "promotions": 1,
+    "replay_verified": true,
+    "suite_hash": "f25405ccc249b53f3c52fb6893f611ca2b03d09ece53ade1b0324951b8e956f7"
+  },
+  "modes": [
+    {
+      "evidence": true,
+      "failure": null,
+      "mode": "combined",
+      "objective": 37.0,
+      "recalled": true,
+      "released": true,
+      "replayed_decisions": 1,
+      "robust": true,
+      "selected": 4,
+      "tokens": 36
+    },
+    {
+      "evidence": true,
+      "failure": null,
+      "mode": "no-ruvector",
+      "objective": 37.0,
+      "recalled": false,
+      "released": true,
+      "replayed_decisions": 1,
+      "robust": true,
+      "selected": 4,
+      "tokens": 36
+    },
+    {
+      "evidence": false,
+      "failure": null,
+      "mode": "no-rvf",
+      "objective": 36.0,
+      "recalled": true,
+      "released": true,
+      "replayed_decisions": 1,
+      "robust": true,
+      "selected": 4,
+      "tokens": 36
+    },
+    {
+      "evidence": false,
+      "failure": "risk upper 0.849 exceeds ceiling",
+      "mode": "no-tiktoken",
+      "objective": 0.0,
+      "recalled": false,
+      "released": false,
+      "replayed_decisions": 0,
+      "robust": true,
+      "selected": 0,
+      "tokens": 0
+    },
+    {
+      "evidence": true,
+      "failure": null,
+      "mode": "no-conformal",
+      "objective": 36.0,
+      "recalled": true,
+      "released": true,
+      "replayed_decisions": 1,
+      "robust": false,
+      "selected": 4,
+      "tokens": 36
+    },
+    {
+      "evidence": false,
+      "failure": null,
+      "mode": "enterprise-only",
+      "objective": 35.0,
+      "recalled": false,
+      "released": true,
+      "replayed_decisions": 1,
+      "robust": false,
+      "selected": 4,
+      "tokens": 36
+    },
+    {
+      "evidence": true,
+      "failure": null,
+      "mode": "ruvnet-only",
+      "objective": 18.3,
+      "recalled": true,
+      "released": true,
+      "replayed_decisions": 0,
+      "robust": false,
+      "selected": 2,
+      "tokens": 34
+    }
+  ]
+}

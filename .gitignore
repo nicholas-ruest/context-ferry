@@ -2,3 +2,8 @@
 /evidence/tmp
 *.rvf
 *.db
+/.python
+/.venv
+/.claude-flow
+/.swarm
+*.pid

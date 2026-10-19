@@ -1,0 +1,17 @@
+
+  Creating coordination topology...
+  Initializing memory namespace...
+  Setting up communication channels...
+
++------------+----------------------------+
+| Property   | Value                      |
++------------+----------------------------+
+| Swarm ID   | swarm-1792374662700-8emire |
+| Topology   | hierarchical               |
+| Max Agents | 4                          |
+| Auto Scale | Enabled                    |
+| Protocol   | message-bus                |
+| V3 Mode    | Disabled                   |
++------------+----------------------------+
+
+[OK] Swarm initialized successfully

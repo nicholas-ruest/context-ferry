@@ -1,0 +1,13 @@
+[package]
+name = "cf-evaluation"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cf-orchestrator = { version = "0.1.0", path = "../cf-orchestrator" }
+serde.workspace = true
+tempfile.workspace = true
