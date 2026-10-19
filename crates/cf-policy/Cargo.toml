@@ -8,5 +8,5 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-types = { path = "../cf-types" }
-cf-request = { path = "../cf-request" }
+cf-types = { version = "0.1.0", path = "../cf-types" }
+cf-request = { version = "0.1.0", path = "../cf-request" }

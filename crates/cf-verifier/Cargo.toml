@@ -8,6 +8,6 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-transfer = { path = "../cf-transfer" }
-cf-rvf = { path = "../cf-rvf" }
+cf-transfer = { version = "0.1.0", path = "../cf-transfer" }
+cf-rvf = { version = "0.1.0", path = "../cf-rvf" }
 thiserror.workspace = true

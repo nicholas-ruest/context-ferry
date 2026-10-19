@@ -1,0 +1,38 @@
+{
+  "id": "repo-native",
+  "version": "0.1.0",
+  "createdAt": "2026-10-19T01:53:33.978Z",
+  "taskHash": "f25405ccc249b53f3c52fb6893f611ca2b03d09ece53ade1b0324951b8e956f7",
+  "tasks": [
+    {
+      "id": "task-0001",
+      "repo": "/home/ruv/work/context-ferry",
+      "commit": "WORKDIR",
+      "title": "Repo native smoke task",
+      "prompt": "Keep the repository test suite green.",
+      "publicTestCommand": "npm test",
+      "hiddenTestCommand": "npm test",
+      "regressionTestCommand": "npm test",
+      "timeoutMs": 300000,
+      "maxCostUsd": 2,
+      "allowedMutationFiles": [],
+      "blockedFiles": [
+        ".env",
+        "package-lock.json",
+        "pnpm-lock.yaml",
+        "yarn.lock",
+        ".github/workflows"
+      ],
+      "successCriteria": [
+        "public test passes",
+        "hidden test passes",
+        "regression suite passes"
+      ],
+      "difficulty": 1,
+      "tags": [
+        "smoke",
+        "repo-native"
+      ]
+    }
+  ]
+}

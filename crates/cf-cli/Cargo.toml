@@ -9,6 +9,6 @@ name = "context-ferry"
 path = "src/main.rs"
 
 [dependencies]
-cf-api = { path = "../cf-api" }
-cf-config = { path = "../cf-config" }
+cf-api = { version = "0.1.0", path = "../cf-api" }
+cf-config = { version = "0.1.0", path = "../cf-config" }
 anyhow.workspace = true

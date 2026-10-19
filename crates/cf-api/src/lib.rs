@@ -1,4 +1,38 @@
-use cf_evaluation::evaluate_modes;use cf_metaharness::EvaluationReceipt;use cf_orchestrator::{Ferry,FerryOptions,frozen_request};use thiserror::Error;
-#[derive(Debug,Error)]pub enum ApiError{#[error("unsupported command")]Command,#[error("execution: {0}")]Execution(String),#[error("serialization: {0}")]Serialize(String)}
-pub fn run(command:&str,memory_path:&str)->Result<String,ApiError>{match command{"example"=>{let out=Ferry::new(memory_path,FerryOptions::default()).execute(&frozen_request()).map_err(|e|ApiError::Execution(e.to_string()))?;serde_json::to_string_pretty(&out).map_err(|e|ApiError::Serialize(e.to_string()))},"evaluate"=>{let modes=evaluate_modes();let receipt=EvaluationReceipt::advisory("pending-source-bound-suite",true,0);serde_json::to_string_pretty(&serde_json::json!({"modes":modes,"metaharness":receipt})).map_err(|e|ApiError::Serialize(e.to_string()))},_=>Err(ApiError::Command)}}
-#[cfg(test)]mod tests{use super::*;#[test]fn rejects_unknown_command(){assert!(run("nope","/tmp/nope").is_err());}}
+use cf_evaluation::evaluate_modes;
+use cf_metaharness::EvaluationReceipt;
+use cf_orchestrator::{Ferry, FerryOptions, frozen_request};
+use thiserror::Error;
+#[derive(Debug, Error)]
+pub enum ApiError {
+    #[error("unsupported command")]
+    Command,
+    #[error("execution: {0}")]
+    Execution(String),
+    #[error("serialization: {0}")]
+    Serialize(String),
+}
+pub fn run(command: &str, memory_path: &str) -> Result<String, ApiError> {
+    match command {
+        "example" => {
+            let out = Ferry::new(memory_path, FerryOptions::default())
+                .execute(&frozen_request())
+                .map_err(|e| ApiError::Execution(e.to_string()))?;
+            serde_json::to_string_pretty(&out).map_err(|e| ApiError::Serialize(e.to_string()))
+        }
+        "evaluate" => {
+            let modes = evaluate_modes();
+            let receipt = EvaluationReceipt::advisory("pending-source-bound-suite", true, 0);
+            serde_json::to_string_pretty(&serde_json::json!({"modes":modes,"metaharness":receipt}))
+                .map_err(|e| ApiError::Serialize(e.to_string()))
+        }
+        _ => Err(ApiError::Command),
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn rejects_unknown_command() {
+        assert!(run("nope", "/tmp/nope").is_err());
+    }
+}

@@ -1,9 +1,290 @@
-use cf_capsule::ContextCapsule;use cf_conformal::{omission_loss,permits,upper_bound};use cf_events::{DomainEvent,EventKind};use cf_ledger::Ledger;use cf_memory::ContextMemory;use cf_recovery::{ReplayState,replay};use cf_request::MigrationRequest;use cf_ruflo::CoordinationReceipt;use cf_selection::select;use cf_telemetry::Telemetry;use cf_tiktoken::TiktokenCounter;use cf_transfer::TransferEnvelope;use serde::{Deserialize,Serialize};use thiserror::Error;
-#[derive(Clone,Copy,Debug)]pub struct FerryOptions{pub ruvector:bool,pub rvf:bool,pub tiktoken:bool,pub conformal:bool}
-impl Default for FerryOptions{fn default()->Self{Self{ruvector:true,rvf:true,tiktoken:true,conformal:true}}}
-#[derive(Clone,Debug,Serialize,Deserialize)]pub struct FerryOutput{pub capsule:ContextCapsule,pub replay:ReplayState,pub telemetry:Telemetry,pub robust:bool,pub coordination:CoordinationReceipt,pub ledger_events:usize}
-#[derive(Debug,Error)]pub enum FerryError{#[error("tokenizer: {0}")]Tokenizer(String),#[error("memory: {0}")]Memory(String),#[error("risk upper {0:.3} exceeds ceiling")]Risk(f64),#[error("capsule: {0}")]Capsule(String),#[error("evidence: {0}")]Evidence(String),#[error("ledger: {0}")]Ledger(String)}
-pub struct Ferry{memory_path:String,options:FerryOptions}
-impl Ferry{#[must_use]pub fn new(memory_path:impl Into<String>,options:FerryOptions)->Self{Self{memory_path:memory_path.into(),options}}pub fn execute(&self,request:&MigrationRequest)->Result<FerryOutput,FerryError>{let mut ledger=Ledger::default();let mut seq=1;ledger.append(DomainEvent::new(seq,EventKind::RequestAccepted,"migration accepted")).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;let mut authorized=cf_policy::authorize(request);for e in &mut authorized{e.tokens=if self.options.tiktoken{TiktokenCounter::count(&e.text).map_err(|x|FerryError::Tokenizer(x.to_string()))?}else{(e.text.split_whitespace().count() as u32).saturating_mul(2).max(1)}}ledger.append(DomainEvent::new(seq,EventKind::PolicyApplied,format!("{} authorized",authorized.len()))).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;let mut recall_count=0;if self.options.ruvector&&!authorized.is_empty(){let memory=ContextMemory::open(&self.memory_path).map_err(|e|FerryError::Memory(e.to_string()))?;for e in &authorized{memory.remember(e).map_err(|x|FerryError::Memory(x.to_string()))?}recall_count=memory.recall(&authorized[0],3).map_err(|x|FerryError::Memory(x.to_string()))?}ledger.append(DomainEvent::new(seq,EventKind::RecallCompleted,format!("{recall_count} analogues"))).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;let plan=select(&authorized,request.budget);let total:f64=authorized.iter().map(|e|e.importance).sum();let loss=omission_loss(&plan,total);let risk=if self.options.conformal{upper_bound(loss,&[0.01,0.02,0.03,0.05,0.08,0.13,0.21],0.1)}else{loss};if self.options.conformal&&!permits(risk,request.max_risk){return Err(FerryError::Risk(risk))}ledger.append(DomainEvent::new(seq,EventKind::SelectionCompleted,format!("{} events",plan.selected.len()))).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;ledger.append(DomainEvent::new(seq,EventKind::RiskAccepted,format!("{risk:.3}"))).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;let capsule=ContextCapsule::build("capsule-2026-10-18",request.destination.clone(),plan,request.budget,risk).map_err(|e|FerryError::Capsule(e.to_string()))?;let witness=if self.options.rvf{Some(cf_rvf::seal(&capsule.events).map_err(|e|FerryError::Evidence(e.to_string()))?)}else{None};ledger.append(DomainEvent::new(seq,EventKind::EvidenceSealed,if witness.is_some(){"rvf"}else{"ablated"})).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;let envelope=TransferEnvelope::new(capsule.clone(),witness);let verified=cf_verifier::verify_envelope(&envelope).is_ok();if self.options.rvf&&!verified{return Err(FerryError::Evidence("destination verification failed".into()))}ledger.append(DomainEvent::new(seq,EventKind::TransferVerified,verified.to_string())).map_err(|e|FerryError::Ledger(e.to_string()))?;seq+=1;let replay=replay(&capsule);ledger.append(DomainEvent::new(seq,EventKind::ReplayCompleted,"replayed")).map_err(|e|FerryError::Ledger(e.to_string()))?;let telemetry=Telemetry{input_events:request.events.len(),authorized_events:authorized.len(),selected_events:capsule.events.len(),used_tokens:capsule.used_tokens,recall_count,evidence_verified:verified};Ok(FerryOutput{capsule,replay,telemetry,robust:self.options.conformal,coordination:CoordinationReceipt::advisory("context migration"),ledger_events:ledger.events().len()})}}
-#[must_use]pub fn frozen_request()->MigrationRequest{use cf_types::{ContextEvent,Destination,Sensitivity};let data=[("e1","objective","Preserve the customer renewal objective and deliver by Friday",Sensitivity::Public,0.96),("e2","constraint","Never transmit customer identifiers outside the internal runtime",Sensitivity::Internal,0.94),("e3","decision","Use the verified batch endpoint after the streaming path failed",Sensitivity::Internal,0.90),("e4","observation","The batch endpoint remained healthy during the last three checks",Sensitivity::Public,0.72),("e5","secret","Temporary credential alpha bravo charlie",Sensitivity::Secret,1.0),("e6","rejected","Rejected exporting raw traces because policy denied the destination",Sensitivity::Internal,0.86),("e7","pending","Confirm final approval and notify the account owner",Sensitivity::Internal,0.88)];let events=data.iter().map(|(id,k,t,s,i)|ContextEvent::new(id,k,t,*s,*i).unwrap()).collect();MigrationRequest::new(Destination::new("edge-london",Sensitivity::Internal).unwrap(),38,0.42,events).unwrap()}
-#[cfg(test)]mod tests{use super::*;#[test]fn full_workload_crosses_real_boundaries(){let d=tempfile::tempdir().unwrap();let out=Ferry::new(d.path().join("db").to_str().unwrap(),FerryOptions::default()).execute(&frozen_request()).unwrap();assert!(out.telemetry.evidence_verified);assert!(out.telemetry.recall_count>0);assert!(out.capsule.used_tokens<=out.capsule.budget);assert_eq!(out.telemetry.policy_drop_count(),1);}}
+use cf_capsule::ContextCapsule;
+use cf_conformal::{omission_loss, permits, upper_bound};
+use cf_events::{DomainEvent, EventKind};
+use cf_ledger::Ledger;
+use cf_memory::ContextMemory;
+use cf_recovery::{ReplayState, replay};
+use cf_request::MigrationRequest;
+use cf_ruflo::CoordinationReceipt;
+use cf_selection::select;
+use cf_telemetry::Telemetry;
+use cf_tiktoken::TiktokenCounter;
+use cf_transfer::TransferEnvelope;
+use serde::{Deserialize, Serialize};
+use thiserror::Error;
+#[derive(Clone, Copy, Debug)]
+pub struct FerryOptions {
+    pub ruvector: bool,
+    pub rvf: bool,
+    pub tiktoken: bool,
+    pub conformal: bool,
+}
+impl Default for FerryOptions {
+    fn default() -> Self {
+        Self {
+            ruvector: true,
+            rvf: true,
+            tiktoken: true,
+            conformal: true,
+        }
+    }
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct FerryOutput {
+    pub capsule: ContextCapsule,
+    pub replay: ReplayState,
+    pub telemetry: Telemetry,
+    pub robust: bool,
+    pub coordination: CoordinationReceipt,
+    pub ledger_events: usize,
+}
+#[derive(Debug, Error)]
+pub enum FerryError {
+    #[error("tokenizer: {0}")]
+    Tokenizer(String),
+    #[error("memory: {0}")]
+    Memory(String),
+    #[error("risk upper {0:.3} exceeds ceiling")]
+    Risk(f64),
+    #[error("capsule: {0}")]
+    Capsule(String),
+    #[error("evidence: {0}")]
+    Evidence(String),
+    #[error("ledger: {0}")]
+    Ledger(String),
+}
+pub struct Ferry {
+    memory_path: String,
+    options: FerryOptions,
+}
+impl Ferry {
+    #[must_use]
+    pub fn new(memory_path: impl Into<String>, options: FerryOptions) -> Self {
+        Self {
+            memory_path: memory_path.into(),
+            options,
+        }
+    }
+    pub fn execute(&self, request: &MigrationRequest) -> Result<FerryOutput, FerryError> {
+        let mut ledger = Ledger::default();
+        let mut seq = 1;
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::RequestAccepted,
+                "migration accepted",
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        let mut authorized = cf_policy::authorize(request);
+        for e in &mut authorized {
+            e.tokens = if self.options.tiktoken {
+                TiktokenCounter::count(&e.text).map_err(|x| FerryError::Tokenizer(x.to_string()))?
+            } else {
+                (e.text.split_whitespace().count() as u32)
+                    .saturating_mul(2)
+                    .max(1)
+            }
+        }
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::PolicyApplied,
+                format!("{} authorized", authorized.len()),
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        let mut recall_count = 0;
+        if self.options.ruvector && !authorized.is_empty() {
+            let memory = ContextMemory::open(&self.memory_path)
+                .map_err(|e| FerryError::Memory(e.to_string()))?;
+            for e in &authorized {
+                memory
+                    .remember(e)
+                    .map_err(|x| FerryError::Memory(x.to_string()))?;
+            }
+            recall_count = memory
+                .recall(&authorized[0], 3)
+                .map_err(|x| FerryError::Memory(x.to_string()))?;
+        }
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::RecallCompleted,
+                format!("{recall_count} analogues"),
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        let plan = select(&authorized, request.budget);
+        let total: f64 = authorized.iter().map(|e| e.importance).sum();
+        let loss = omission_loss(&plan, total);
+        let risk = if self.options.conformal {
+            upper_bound(loss, &[0.01, 0.02, 0.03, 0.05, 0.08, 0.13, 0.21], 0.1)
+        } else {
+            loss
+        };
+        if self.options.conformal && !permits(risk, request.max_risk) {
+            return Err(FerryError::Risk(risk));
+        }
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::SelectionCompleted,
+                format!("{} events", plan.selected.len()),
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::RiskAccepted,
+                format!("{risk:.3}"),
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        let capsule = ContextCapsule::build(
+            "capsule-2026-10-18",
+            request.destination.clone(),
+            plan,
+            request.budget,
+            risk,
+        )
+        .map_err(|e| FerryError::Capsule(e.to_string()))?;
+        let witness = if self.options.rvf {
+            Some(cf_rvf::seal(&capsule.events).map_err(|e| FerryError::Evidence(e.to_string()))?)
+        } else {
+            None
+        };
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::EvidenceSealed,
+                if witness.is_some() { "rvf" } else { "ablated" },
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        let envelope = TransferEnvelope::new(capsule.clone(), witness);
+        let verified = cf_verifier::verify_envelope(&envelope).is_ok();
+        if self.options.rvf && !verified {
+            return Err(FerryError::Evidence(
+                "destination verification failed".into(),
+            ));
+        }
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::TransferVerified,
+                verified.to_string(),
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        seq += 1;
+        let replay = replay(&capsule);
+        ledger
+            .append(DomainEvent::new(
+                seq,
+                EventKind::ReplayCompleted,
+                "replayed",
+            ))
+            .map_err(|e| FerryError::Ledger(e.to_string()))?;
+        let telemetry = Telemetry {
+            input_events: request.events.len(),
+            authorized_events: authorized.len(),
+            selected_events: capsule.events.len(),
+            used_tokens: capsule.used_tokens,
+            recall_count,
+            evidence_verified: verified,
+        };
+        Ok(FerryOutput {
+            capsule,
+            replay,
+            telemetry,
+            robust: self.options.conformal,
+            coordination: CoordinationReceipt::advisory("context migration"),
+            ledger_events: ledger.events().len(),
+        })
+    }
+}
+#[must_use]
+pub fn frozen_request() -> MigrationRequest {
+    use cf_types::{ContextEvent, Destination, Sensitivity};
+    let data = [
+        (
+            "e1",
+            "objective",
+            "Preserve the customer renewal objective and deliver by Friday",
+            Sensitivity::Public,
+            0.96,
+        ),
+        (
+            "e2",
+            "constraint",
+            "Never transmit customer identifiers outside the internal runtime",
+            Sensitivity::Internal,
+            0.94,
+        ),
+        (
+            "e3",
+            "decision",
+            "Use the verified batch endpoint after the streaming path failed",
+            Sensitivity::Internal,
+            0.90,
+        ),
+        (
+            "e4",
+            "observation",
+            "The batch endpoint remained healthy during the last three checks",
+            Sensitivity::Public,
+            0.72,
+        ),
+        (
+            "e5",
+            "secret",
+            "Temporary credential alpha bravo charlie",
+            Sensitivity::Secret,
+            1.0,
+        ),
+        (
+            "e6",
+            "rejected",
+            "Rejected exporting raw traces because policy denied the destination",
+            Sensitivity::Internal,
+            0.86,
+        ),
+        (
+            "e7",
+            "pending",
+            "Confirm final approval and notify the account owner",
+            Sensitivity::Internal,
+            0.88,
+        ),
+    ];
+    let events = data
+        .iter()
+        .map(|(id, k, t, s, i)| ContextEvent::new(id, k, t, *s, *i).unwrap())
+        .collect();
+    MigrationRequest::new(
+        Destination::new("edge-london", Sensitivity::Internal).unwrap(),
+        38,
+        0.55,
+        events,
+    )
+    .unwrap()
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn full_workload_crosses_real_boundaries() {
+        let d = tempfile::tempdir().unwrap();
+        let out = Ferry::new(
+            d.path().join("db").to_str().unwrap(),
+            FerryOptions::default(),
+        )
+        .execute(&frozen_request())
+        .unwrap();
+        assert!(out.telemetry.evidence_verified);
+        assert!(out.telemetry.recall_count > 0);
+        assert!(out.capsule.used_tokens <= out.capsule.budget);
+        assert_eq!(out.telemetry.policy_drop_count(), 1);
+    }
+}

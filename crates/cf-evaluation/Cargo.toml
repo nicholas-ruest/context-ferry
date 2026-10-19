@@ -8,6 +8,6 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-orchestrator = { path = "../cf-orchestrator" }
+cf-orchestrator = { version = "0.1.0", path = "../cf-orchestrator" }
 serde.workspace = true
 tempfile.workspace = true

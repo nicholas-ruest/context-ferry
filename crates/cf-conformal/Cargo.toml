@@ -8,4 +8,4 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-selection = { path = "../cf-selection" }
+cf-selection = { version = "0.1.0", path = "../cf-selection" }

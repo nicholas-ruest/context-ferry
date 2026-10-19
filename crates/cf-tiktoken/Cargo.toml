@@ -8,5 +8,5 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-token-budget = { path = "../cf-token-budget" }
+cf-token-budget = { version = "0.1.0", path = "../cf-token-budget" }
 thiserror.workspace = true

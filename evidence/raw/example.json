@@ -1,0 +1,72 @@
+{
+  "capsule": {
+    "id": "capsule-2026-10-18",
+    "destination": {
+      "name": "edge-london",
+      "clearance": "Internal"
+    },
+    "events": [
+      {
+        "id": "e1",
+        "kind": "objective",
+        "text": "Preserve the customer renewal objective and deliver by Friday",
+        "sensitivity": "Public",
+        "importance": 0.96,
+        "tokens": 10
+      },
+      {
+        "id": "e2",
+        "kind": "constraint",
+        "text": "Never transmit customer identifiers outside the internal runtime",
+        "sensitivity": "Internal",
+        "importance": 0.94,
+        "tokens": 8
+      },
+      {
+        "id": "e3",
+        "kind": "decision",
+        "text": "Use the verified batch endpoint after the streaming path failed",
+        "sensitivity": "Internal",
+        "importance": 0.9,
+        "tokens": 10
+      },
+      {
+        "id": "e7",
+        "kind": "pending",
+        "text": "Confirm final approval and notify the account owner",
+        "sensitivity": "Internal",
+        "importance": 0.88,
+        "tokens": 8
+      }
+    ],
+    "used_tokens": 36,
+    "budget": 38,
+    "risk_upper": 0.5103802281368821
+  },
+  "replay": {
+    "objectives": [
+      "Preserve the customer renewal objective and deliver by Friday"
+    ],
+    "decisions": [
+      "Use the verified batch endpoint after the streaming path failed"
+    ],
+    "pending": [
+      "Confirm final approval and notify the account owner"
+    ]
+  },
+  "telemetry": {
+    "input_events": 7,
+    "authorized_events": 6,
+    "selected_events": 4,
+    "used_tokens": 36,
+    "recall_count": 3,
+    "evidence_verified": true
+  },
+  "robust": true,
+  "coordination": {
+    "topology": "hierarchical",
+    "authority": "none",
+    "mission": "context migration"
+  },
+  "ledger_events": 8
+}

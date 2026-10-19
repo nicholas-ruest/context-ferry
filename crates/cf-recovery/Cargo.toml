@@ -8,5 +8,5 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-capsule = { path = "../cf-capsule" }
+cf-capsule = { version = "0.1.0", path = "../cf-capsule" }
 serde.workspace = true

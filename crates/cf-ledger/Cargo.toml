@@ -8,5 +8,5 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-events = { path = "../cf-events" }
+cf-events = { version = "0.1.0", path = "../cf-events" }
 thiserror.workspace = true

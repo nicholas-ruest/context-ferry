@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import json,subprocess,sys
-m=json.loads(subprocess.check_output(['cargo','metadata','--locked','--no-deps'],text=True))
+from pathlib import Path
+root=Path(__file__).resolve().parents[1]
+m=json.loads(subprocess.check_output(['cargo','metadata','--locked','--no-deps'],text=True,cwd=root))
 packages={p['id']:p for p in m['packages']}; names={p['name'] for p in m['packages']}; reverse={n:0 for n in names}
 for p in m['packages']:
     for d in p['dependencies']:

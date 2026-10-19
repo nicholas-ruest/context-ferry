@@ -1,0 +1,1000 @@
+warning[duplicate]: found 2 duplicate entries for crate 'base64'
+   ┌─ /home/ruv/work/context-ferry/Cargo.lock:13:1
+   │
+13 │ ╭ base64 0.22.1 registry+https://github.com/rust-lang/crates.io-index
+14 │ │ base64 0.23.1 registry+https://github.com/rust-lang/crates.io-index
+   │ ╰───────────────────────────────────────────────────────────────────┘ lock entries
+   │
+   ├ base64 v0.22.1
+     └── reqwest v0.12.28
+         └── ruvector-core v2.4.0
+             └── cf-memory v0.1.0
+                 └── cf-orchestrator v0.1.0
+                     ├── cf-api v0.1.0
+                     │   └── cf-cli v0.1.0
+                     └── cf-evaluation v0.1.0
+                         └── cf-api v0.1.0 (*)
+   ├ base64 v0.23.1
+     └── hyper-util v0.1.21
+         ├── hyper-rustls v0.27.10
+         │   └── reqwest v0.12.28
+         │       └── ruvector-core v2.4.0
+         │           └── cf-memory v0.1.0
+         │               └── cf-orchestrator v0.1.0
+         │                   ├── cf-api v0.1.0
+         │                   │   └── cf-cli v0.1.0
+         │                   └── cf-evaluation v0.1.0
+         │                       └── cf-api v0.1.0 (*)
+         └── reqwest v0.12.28 (*)
+
+warning[license-not-encountered]: license was not encountered
+  ┌─ /home/ruv/work/context-ferry/deny.toml:8:32
+  │
+8 │ allow = ["Apache-2.0", "MIT", "MIT-0", "BSD-3-Clause", "CDLA-Permissive-2.0", "ISC", "Unicode-3.0", "Zlib"]
+  │                                ━━━━━ unmatched license allowance
+
+warning[duplicate]: found 2 duplicate entries for crate 'cpufeatures'
+   ┌─ /home/ruv/work/context-ferry/Cargo.lock:56:1
+   │
+56 │ ╭ cpufeatures 0.2.17 registry+https://github.com/rust-lang/crates.io-index
+57 │ │ cpufeatures 0.3.1 registry+https://github.com/rust-lang/crates.io-index
+   │ ╰───────────────────────────────────────────────────────────────────────┘ lock entries
+   │
+   ├ cpufeatures v0.2.17
+     ├── curve25519-dalek v4.1.3
+     │   └── ed25519-dalek v2.2.0
+     │       └── rvf-crypto v0.2.0
+     │           └── cf-rvf v0.1.0
+     │               ├── cf-orchestrator v0.1.0
+     │               │   ├── cf-api v0.1.0
+     │               │   │   └── cf-cli v0.1.0
+     │               │   └── cf-evaluation v0.1.0
+     │               │       └── cf-api v0.1.0 (*)
+     │               ├── cf-transfer v0.1.0
+     │               │   ├── cf-orchestrator v0.1.0 (*)
+     │               │   └── cf-verifier v0.1.0
+     │               │       └── cf-orchestrator v0.1.0 (*)
+     │               └── cf-verifier v0.1.0 (*)
+     ├── keccak v0.1.6
+     │   └── sha3 v0.10.9
+     │       └── rvf-crypto v0.2.0 (*)
+     └── sha2 v0.10.9
+         ├── ed25519-dalek v2.2.0 (*)
+         └── ruvector-core v2.4.0
+             └── cf-memory v0.1.0
+                 └── cf-orchestrator v0.1.0 (*)
+   ├ cpufeatures v0.3.1
+     └── chacha20 v0.10.2
+         └── rand v0.10.3
+             └── hnsw_rs v0.3.5
+                 └── ruvector-core v2.4.0
+                     └── cf-memory v0.1.0
+                         └── cf-orchestrator v0.1.0
+                             ├── cf-api v0.1.0
+                             │   └── cf-cli v0.1.0
+                             └── cf-evaluation v0.1.0
+                                 └── cf-api v0.1.0 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'getrandom'
+   ┌─ /home/ruv/work/context-ferry/Cargo.lock:90:1
+   │
+90 │ ╭ getrandom 0.2.17 registry+https://github.com/rust-lang/crates.io-index
+91 │ │ getrandom 0.4.3 registry+https://github.com/rust-lang/crates.io-index
+   │ ╰─────────────────────────────────────────────────────────────────────┘ lock entries
+   │
+   ├ getrandom v0.2.17
+     ├── rand_core v0.6.4
+     │   ├── ed25519-dalek v2.2.0
+     │   │   └── rvf-crypto v0.2.0
+     │   │       └── cf-rvf v0.1.0
+     │   │           ├── cf-orchestrator v0.1.0
+     │   │           │   ├── cf-api v0.1.0
+     │   │           │   │   └── cf-cli v0.1.0
+     │   │           │   └── cf-evaluation v0.1.0
+     │   │           │       └── cf-api v0.1.0 (*)
+     │   │           ├── cf-transfer v0.1.0
+     │   │           │   ├── cf-orchestrator v0.1.0 (*)
+     │   │           │   └── cf-verifier v0.1.0
+     │   │           │       └── cf-orchestrator v0.1.0 (*)
+     │   │           └── cf-verifier v0.1.0 (*)
+     │   ├── rand v0.8.8
+     │   │   ├── rand_distr v0.4.3
+     │   │   │   └── ruvector-core v2.4.0
+     │   │   │       └── cf-memory v0.1.0
+     │   │   │           └── cf-orchestrator v0.1.0 (*)
+     │   │   └── ruvector-core v2.4.0 (*)
+     │   └── rand_chacha v0.3.1
+     │       └── rand v0.8.8 (*)
+     └── ring v0.17.14
+         ├── rustls v0.23.46
+         │   ├── hyper-rustls v0.27.10
+         │   │   └── reqwest v0.12.28
+         │   │       └── ruvector-core v2.4.0 (*)
+         │   ├── reqwest v0.12.28 (*)
+         │   └── tokio-rustls v0.26.6
+         │       ├── hyper-rustls v0.27.10 (*)
+         │       └── reqwest v0.12.28 (*)
+         └── rustls-webpki v0.103.15
+             └── rustls v0.23.46 (*)
+   ├ getrandom v0.4.3
+     ├── rand v0.10.3
+     │   └── hnsw_rs v0.3.5
+     │       └── ruvector-core v2.4.0
+     │           └── cf-memory v0.1.0
+     │               └── cf-orchestrator v0.1.0
+     │                   ├── cf-api v0.1.0
+     │                   │   └── cf-cli v0.1.0
+     │                   └── cf-evaluation v0.1.0
+     │                       └── cf-api v0.1.0 (*)
+     ├── tempfile v3.27.0
+     │   ├── cf-evaluation v0.1.0 (*)
+     │   ├── (dev) cf-memory v0.1.0 (*)
+     │   └── (dev) cf-orchestrator v0.1.0 (*)
+     └── uuid v1.28.0
+         └── ruvector-core v2.4.0 (*)
+
+warning[duplicate]: found 3 duplicate entries for crate 'hashbrown'
+   ┌─ /home/ruv/work/context-ferry/Cargo.lock:92:1
+   │
+92 │ ╭ hashbrown 0.14.5 registry+https://github.com/rust-lang/crates.io-index
+93 │ │ hashbrown 0.15.5 registry+https://github.com/rust-lang/crates.io-index
+94 │ │ hashbrown 0.17.1 registry+https://github.com/rust-lang/crates.io-index
+   │ ╰──────────────────────────────────────────────────────────────────────┘ lock entries
+   │
+   ├ hashbrown v0.14.5
+     └── dashmap v6.2.1
+         └── ruvector-core v2.4.0
+             └── cf-memory v0.1.0
+                 └── cf-orchestrator v0.1.0
+                     ├── cf-api v0.1.0
+                     │   └── cf-cli v0.1.0
+                     └── cf-evaluation v0.1.0
+                         └── cf-api v0.1.0 (*)
+   ├ hashbrown v0.15.5
+     └── hnsw_rs v0.3.5
+         └── ruvector-core v2.4.0
+             └── cf-memory v0.1.0
+                 └── cf-orchestrator v0.1.0
+                     ├── cf-api v0.1.0
+                     │   └── cf-cli v0.1.0
+                     └── cf-evaluation v0.1.0
+                         └── cf-api v0.1.0 (*)
+   ├ hashbrown v0.17.1
+     ├── indexmap v2.14.2
+     │   └── hnsw_rs v0.3.5
+     │       └── ruvector-core v2.4.0
+     │           └── cf-memory v0.1.0
+     │               └── cf-orchestrator v0.1.0
+     │                   ├── cf-api v0.1.0
+     │                   │   └── cf-cli v0.1.0
+     │                   └── cf-evaluation v0.1.0
+     │                       └── cf-api v0.1.0 (*)
+     └── rkyv v0.8.18
+         └── ruvector-core v2.4.0 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'rand'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:161:1
+    │
+161 │ ╭ rand 0.8.8 registry+https://github.com/rust-lang/crates.io-index
+162 │ │ rand 0.10.3 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰─────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ rand v0.8.8
+      ├── rand_distr v0.4.3
+      │   └── ruvector-core v2.4.0
+      │       └── cf-memory v0.1.0
+      │           └── cf-orchestrator v0.1.0
+      │               ├── cf-api v0.1.0
+      │               │   └── cf-cli v0.1.0
+      │               └── cf-evaluation v0.1.0
+      │                   └── cf-api v0.1.0 (*)
+      └── ruvector-core v2.4.0 (*)
+    ├ rand v0.10.3
+      └── hnsw_rs v0.3.5
+          └── ruvector-core v2.4.0
+              └── cf-memory v0.1.0
+                  └── cf-orchestrator v0.1.0
+                      ├── cf-api v0.1.0
+                      │   └── cf-cli v0.1.0
+                      └── cf-evaluation v0.1.0
+                          └── cf-api v0.1.0 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'rand_core'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:164:1
+    │
+164 │ ╭ rand_core 0.6.4 registry+https://github.com/rust-lang/crates.io-index
+165 │ │ rand_core 0.10.1 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰──────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ rand_core v0.6.4
+      ├── ed25519-dalek v2.2.0
+      │   └── rvf-crypto v0.2.0
+      │       └── cf-rvf v0.1.0
+      │           ├── cf-orchestrator v0.1.0
+      │           │   ├── cf-api v0.1.0
+      │           │   │   └── cf-cli v0.1.0
+      │           │   └── cf-evaluation v0.1.0
+      │           │       └── cf-api v0.1.0 (*)
+      │           ├── cf-transfer v0.1.0
+      │           │   ├── cf-orchestrator v0.1.0 (*)
+      │           │   └── cf-verifier v0.1.0
+      │           │       └── cf-orchestrator v0.1.0 (*)
+      │           └── cf-verifier v0.1.0 (*)
+      ├── rand v0.8.8
+      │   ├── rand_distr v0.4.3
+      │   │   └── ruvector-core v2.4.0
+      │   │       └── cf-memory v0.1.0
+      │   │           └── cf-orchestrator v0.1.0 (*)
+      │   └── ruvector-core v2.4.0 (*)
+      └── rand_chacha v0.3.1
+          └── rand v0.8.8 (*)
+    ├ rand_core v0.10.1
+      ├── chacha20 v0.10.2
+      │   └── rand v0.10.3
+      │       └── hnsw_rs v0.3.5
+      │           └── ruvector-core v2.4.0
+      │               └── cf-memory v0.1.0
+      │                   └── cf-orchestrator v0.1.0
+      │                       ├── cf-api v0.1.0
+      │                       │   └── cf-cli v0.1.0
+      │                       └── cf-evaluation v0.1.0
+      │                           └── cf-api v0.1.0 (*)
+      ├── getrandom v0.4.3
+      │   ├── rand v0.10.3 (*)
+      │   ├── tempfile v3.27.0
+      │   │   ├── cf-evaluation v0.1.0 (*)
+      │   │   ├── (dev) cf-memory v0.1.0 (*)
+      │   │   └── (dev) cf-orchestrator v0.1.0 (*)
+      │   └── uuid v1.28.0
+      │       └── ruvector-core v2.4.0 (*)
+      └── rand v0.10.3 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'syn'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:210:1
+    │
+210 │ ╭ syn 2.0.119 registry+https://github.com/rust-lang/crates.io-index
+211 │ │ syn 3.0.9 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰───────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ syn v2.0.119
+      ├── curve25519-dalek-derive v0.1.1
+      │   └── curve25519-dalek v4.1.3
+      │       └── ed25519-dalek v2.2.0
+      │           └── rvf-crypto v0.2.0
+      │               └── cf-rvf v0.1.0
+      │                   ├── cf-orchestrator v0.1.0
+      │                   │   ├── cf-api v0.1.0
+      │                   │   │   └── cf-cli v0.1.0
+      │                   │   └── cf-evaluation v0.1.0
+      │                   │       └── cf-api v0.1.0 (*)
+      │                   ├── cf-transfer v0.1.0
+      │                   │   ├── cf-orchestrator v0.1.0 (*)
+      │                   │   └── cf-verifier v0.1.0
+      │                   │       └── cf-orchestrator v0.1.0 (*)
+      │                   └── cf-verifier v0.1.0 (*)
+      ├── enum-as-inner v0.6.1
+      │   └── sysctl v0.6.0
+      │       └── mmap-rs v0.7.0
+      │           └── hnsw_rs v0.3.5
+      │               └── ruvector-core v2.4.0
+      │                   └── cf-memory v0.1.0
+      │                       └── cf-orchestrator v0.1.0 (*)
+      ├── munge_macro v0.4.7
+      │   └── munge v0.4.7
+      │       └── rkyv v0.8.18
+      │           └── ruvector-core v2.4.0 (*)
+      ├── thiserror-impl v1.0.69
+      │   └── thiserror v1.0.69
+      │       └── sysctl v0.6.0 (*)
+      ├── tracing-attributes v0.1.31
+      │   └── tracing v0.1.44
+      │       ├── hyper-util v0.1.21
+      │       │   ├── hyper-rustls v0.27.10
+      │       │   │   └── reqwest v0.12.28
+      │       │   │       └── ruvector-core v2.4.0 (*)
+      │       │   └── reqwest v0.12.28 (*)
+      │       └── ruvector-core v2.4.0 (*)
+      ├── windows-implement v0.60.2
+      │   └── windows-core v0.62.2
+      │       └── iana-time-zone v0.1.65
+      │           └── chrono v0.4.45
+      │               └── ruvector-core v2.4.0 (*)
+      └── windows-interface v0.59.3
+          └── windows-core v0.62.2 (*)
+    ├ syn v3.0.9
+      ├── bytecheck_derive v0.8.3
+      │   └── bytecheck v0.8.3
+      │       ├── rend v0.5.4
+      │       │   └── rkyv v0.8.18
+      │       │       └── ruvector-core v2.4.0
+      │       │           └── cf-memory v0.1.0
+      │       │               └── cf-orchestrator v0.1.0
+      │       │                   ├── cf-api v0.1.0
+      │       │                   │   └── cf-cli v0.1.0
+      │       │                   └── cf-evaluation v0.1.0
+      │       │                       └── cf-api v0.1.0 (*)
+      │       └── rkyv v0.8.18 (*)
+      ├── displaydoc v0.2.7
+      │   ├── icu_collections v2.3.0
+      │   │   ├── icu_normalizer v2.3.0
+      │   │   │   └── idna_adapter v1.2.2
+      │   │   │       └── idna v1.1.0
+      │   │   │           └── url v2.5.8
+      │   │   │               ├── reqwest v0.12.28
+      │   │   │               │   └── ruvector-core v2.4.0 (*)
+      │   │   │               └── tower-http v0.6.11
+      │   │   │                   └── reqwest v0.12.28 (*)
+      │   │   └── icu_properties v2.3.0
+      │   │       └── idna_adapter v1.2.2 (*)
+      │   ├── icu_locale_core v2.3.0
+      │   │   ├── icu_properties v2.3.0 (*)
+      │   │   └── icu_provider v2.3.1
+      │   │       ├── icu_normalizer v2.3.0 (*)
+      │   │       └── icu_properties v2.3.0 (*)
+      │   ├── icu_properties v2.3.0 (*)
+      │   ├── icu_provider v2.3.1 (*)
+      │   ├── tinystr v0.8.4
+      │   │   └── icu_locale_core v2.3.0 (*)
+      │   └── zerotrie v0.2.5
+      │       ├── icu_properties v2.3.0 (*)
+      │       └── icu_provider v2.3.1 (*)
+      ├── ptr_meta_derive v0.3.2
+      │   └── ptr_meta v0.3.2
+      │       ├── bytecheck v0.8.3 (*)
+      │       ├── rancor v0.1.3
+      │       │   ├── bytecheck v0.8.3 (*)
+      │       │   └── rkyv v0.8.18 (*)
+      │       └── rkyv v0.8.18 (*)
+      ├── rkyv_derive v0.8.18
+      │   └── rkyv v0.8.18 (*)
+      ├── serde_derive v1.0.229
+      │   └── serde v1.0.229
+      │       ├── bincode v2.0.1
+      │       │   └── ruvector-core v2.4.0 (*)
+      │       ├── cf-capsule v0.1.0
+      │       │   ├── cf-orchestrator v0.1.0 (*)
+      │       │   ├── cf-recovery v0.1.0
+      │       │   │   └── cf-orchestrator v0.1.0 (*)
+      │       │   └── cf-transfer v0.1.0
+      │       │       ├── cf-orchestrator v0.1.0 (*)
+      │       │       └── cf-verifier v0.1.0
+      │       │           └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-evaluation v0.1.0 (*)
+      │       ├── cf-events v0.1.0
+      │       │   ├── cf-ledger v0.1.0
+      │       │   │   └── cf-orchestrator v0.1.0 (*)
+      │       │   └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-metaharness v0.1.0
+      │       │   └── cf-api v0.1.0 (*)
+      │       ├── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-recovery v0.1.0 (*)
+      │       ├── cf-request v0.1.0
+      │       │   ├── cf-orchestrator v0.1.0 (*)
+      │       │   └── cf-policy v0.1.0
+      │       │       └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-ruflo v0.1.0
+      │       │   └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-rvf v0.1.0
+      │       │   ├── cf-orchestrator v0.1.0 (*)
+      │       │   ├── cf-transfer v0.1.0 (*)
+      │       │   └── cf-verifier v0.1.0 (*)
+      │       ├── cf-selection v0.1.0
+      │       │   ├── cf-capsule v0.1.0 (*)
+      │       │   ├── cf-conformal v0.1.0
+      │       │   │   └── cf-orchestrator v0.1.0 (*)
+      │       │   └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-telemetry v0.1.0
+      │       │   └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-transfer v0.1.0 (*)
+      │       ├── cf-types v0.1.0
+      │       │   ├── cf-capsule v0.1.0 (*)
+      │       │   ├── cf-events v0.1.0 (*)
+      │       │   ├── cf-memory v0.1.0 (*)
+      │       │   ├── cf-orchestrator v0.1.0 (*)
+      │       │   ├── cf-policy v0.1.0 (*)
+      │       │   ├── cf-request v0.1.0 (*)
+      │       │   ├── cf-rvf v0.1.0 (*)
+      │       │   └── cf-selection v0.1.0 (*)
+      │       ├── chrono v0.4.45
+      │       │   └── ruvector-core v2.4.0 (*)
+      │       ├── hnsw_rs v0.3.5
+      │       │   └── ruvector-core v2.4.0 (*)
+      │       ├── ndarray v0.16.1
+      │       │   └── ruvector-core v2.4.0 (*)
+      │       ├── reqwest v0.12.28 (*)
+      │       ├── ruvector-core v2.4.0 (*)
+      │       ├── ruvector-turboquant v2.3.0
+      │       │   └── ruvector-core v2.4.0 (*)
+      │       └── serde_urlencoded v0.7.1
+      │           └── reqwest v0.12.28 (*)
+      ├── synstructure v0.14.0
+      │   ├── yoke-derive v0.8.4
+      │   │   └── yoke v0.8.3
+      │   │       ├── icu_collections v2.3.0 (*)
+      │   │       ├── icu_provider v2.3.1 (*)
+      │   │       ├── zerotrie v0.2.5 (*)
+      │   │       └── zerovec v0.11.8
+      │   │           ├── icu_collections v2.3.0 (*)
+      │   │           ├── icu_locale_core v2.3.0 (*)
+      │   │           ├── icu_normalizer v2.3.0 (*)
+      │   │           ├── icu_properties v2.3.0 (*)
+      │   │           ├── icu_provider v2.3.1 (*)
+      │   │           ├── potential_utf v0.1.6
+      │   │           │   └── icu_collections v2.3.0 (*)
+      │   │           └── tinystr v0.8.4 (*)
+      │   └── zerofrom-derive v0.1.8
+      │       └── zerofrom v0.1.8
+      │           ├── icu_collections v2.3.0 (*)
+      │           ├── icu_provider v2.3.1 (*)
+      │           ├── yoke v0.8.3 (*)
+      │           ├── zerotrie v0.2.5 (*)
+      │           └── zerovec v0.11.8 (*)
+      ├── thiserror-impl v2.0.21
+      │   └── thiserror v2.0.21
+      │       ├── cf-api v0.1.0 (*)
+      │       ├── cf-capsule v0.1.0 (*)
+      │       ├── cf-config v0.1.0
+      │       │   └── cf-cli v0.1.0 (*)
+      │       ├── cf-ledger v0.1.0 (*)
+      │       ├── cf-memory v0.1.0 (*)
+      │       ├── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-request v0.1.0 (*)
+      │       ├── cf-rvf v0.1.0 (*)
+      │       ├── cf-tiktoken v0.1.0
+      │       │   └── cf-orchestrator v0.1.0 (*)
+      │       ├── cf-token-budget v0.1.0
+      │       │   └── cf-tiktoken v0.1.0 (*)
+      │       ├── cf-verifier v0.1.0 (*)
+      │       ├── mmap-rs v0.7.0
+      │       │   └── hnsw_rs v0.3.5 (*)
+      │       ├── ruvector-core v2.4.0 (*)
+      │       └── ruvector-turboquant v2.3.0 (*)
+      ├── wasm-bindgen-macro-support v0.2.129
+      │   └── wasm-bindgen-macro v0.2.129
+      │       └── wasm-bindgen v0.2.129
+      │           ├── chrono v0.4.45 (*)
+      │           ├── iana-time-zone v0.1.65
+      │           │   └── chrono v0.4.45 (*)
+      │           ├── js-sys v0.3.106
+      │           │   ├── chrono v0.4.45 (*)
+      │           │   ├── iana-time-zone v0.1.65 (*)
+      │           │   ├── reqwest v0.12.28 (*)
+      │           │   ├── uuid v1.28.0
+      │           │   │   └── ruvector-core v2.4.0 (*)
+      │           │   ├── wasm-bindgen-futures v0.4.79
+      │           │   │   └── reqwest v0.12.28 (*)
+      │           │   └── web-sys v0.3.106
+      │           │       └── reqwest v0.12.28 (*)
+      │           ├── reqwest v0.12.28 (*)
+      │           ├── uuid v1.28.0 (*)
+      │           ├── wasm-bindgen-futures v0.4.79 (*)
+      │           └── web-sys v0.3.106 (*)
+      ├── yoke-derive v0.8.4 (*)
+      ├── zerofrom-derive v0.1.8 (*)
+      └── zerovec-derive v0.11.6
+          └── zerovec v0.11.8 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'thiserror'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:216:1
+    │
+216 │ ╭ thiserror 1.0.69 registry+https://github.com/rust-lang/crates.io-index
+217 │ │ thiserror 2.0.21 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰──────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ thiserror v1.0.69
+      └── sysctl v0.6.0
+          └── mmap-rs v0.7.0
+              └── hnsw_rs v0.3.5
+                  └── ruvector-core v2.4.0
+                      └── cf-memory v0.1.0
+                          └── cf-orchestrator v0.1.0
+                              ├── cf-api v0.1.0
+                              │   └── cf-cli v0.1.0
+                              └── cf-evaluation v0.1.0
+                                  └── cf-api v0.1.0 (*)
+    ├ thiserror v2.0.21
+      ├── cf-api v0.1.0
+      │   └── cf-cli v0.1.0
+      ├── cf-capsule v0.1.0
+      │   ├── cf-orchestrator v0.1.0
+      │   │   ├── cf-api v0.1.0 (*)
+      │   │   └── cf-evaluation v0.1.0
+      │   │       └── cf-api v0.1.0 (*)
+      │   ├── cf-recovery v0.1.0
+      │   │   └── cf-orchestrator v0.1.0 (*)
+      │   └── cf-transfer v0.1.0
+      │       ├── cf-orchestrator v0.1.0 (*)
+      │       └── cf-verifier v0.1.0
+      │           └── cf-orchestrator v0.1.0 (*)
+      ├── cf-config v0.1.0
+      │   └── cf-cli v0.1.0 (*)
+      ├── cf-ledger v0.1.0
+      │   └── cf-orchestrator v0.1.0 (*)
+      ├── cf-memory v0.1.0
+      │   └── cf-orchestrator v0.1.0 (*)
+      ├── cf-orchestrator v0.1.0 (*)
+      ├── cf-request v0.1.0
+      │   ├── cf-orchestrator v0.1.0 (*)
+      │   └── cf-policy v0.1.0
+      │       └── cf-orchestrator v0.1.0 (*)
+      ├── cf-rvf v0.1.0
+      │   ├── cf-orchestrator v0.1.0 (*)
+      │   ├── cf-transfer v0.1.0 (*)
+      │   └── cf-verifier v0.1.0 (*)
+      ├── cf-tiktoken v0.1.0
+      │   └── cf-orchestrator v0.1.0 (*)
+      ├── cf-token-budget v0.1.0
+      │   └── cf-tiktoken v0.1.0 (*)
+      ├── cf-verifier v0.1.0 (*)
+      ├── mmap-rs v0.7.0
+      │   └── hnsw_rs v0.3.5
+      │       └── ruvector-core v2.4.0
+      │           └── cf-memory v0.1.0 (*)
+      ├── ruvector-core v2.4.0 (*)
+      └── ruvector-turboquant v2.3.0
+          └── ruvector-core v2.4.0 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'thiserror-impl'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:218:1
+    │
+218 │ ╭ thiserror-impl 1.0.69 registry+https://github.com/rust-lang/crates.io-index
+219 │ │ thiserror-impl 2.0.21 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰───────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ thiserror-impl v1.0.69
+      └── thiserror v1.0.69
+          └── sysctl v0.6.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ thiserror-impl v2.0.21
+      └── thiserror v2.0.21
+          ├── cf-api v0.1.0
+          │   └── cf-cli v0.1.0
+          ├── cf-capsule v0.1.0
+          │   ├── cf-orchestrator v0.1.0
+          │   │   ├── cf-api v0.1.0 (*)
+          │   │   └── cf-evaluation v0.1.0
+          │   │       └── cf-api v0.1.0 (*)
+          │   ├── cf-recovery v0.1.0
+          │   │   └── cf-orchestrator v0.1.0 (*)
+          │   └── cf-transfer v0.1.0
+          │       ├── cf-orchestrator v0.1.0 (*)
+          │       └── cf-verifier v0.1.0
+          │           └── cf-orchestrator v0.1.0 (*)
+          ├── cf-config v0.1.0
+          │   └── cf-cli v0.1.0 (*)
+          ├── cf-ledger v0.1.0
+          │   └── cf-orchestrator v0.1.0 (*)
+          ├── cf-memory v0.1.0
+          │   └── cf-orchestrator v0.1.0 (*)
+          ├── cf-orchestrator v0.1.0 (*)
+          ├── cf-request v0.1.0
+          │   ├── cf-orchestrator v0.1.0 (*)
+          │   └── cf-policy v0.1.0
+          │       └── cf-orchestrator v0.1.0 (*)
+          ├── cf-rvf v0.1.0
+          │   ├── cf-orchestrator v0.1.0 (*)
+          │   ├── cf-transfer v0.1.0 (*)
+          │   └── cf-verifier v0.1.0 (*)
+          ├── cf-tiktoken v0.1.0
+          │   └── cf-orchestrator v0.1.0 (*)
+          ├── cf-token-budget v0.1.0
+          │   └── cf-tiktoken v0.1.0 (*)
+          ├── cf-verifier v0.1.0 (*)
+          ├── mmap-rs v0.7.0
+          │   └── hnsw_rs v0.3.5
+          │       └── ruvector-core v2.4.0
+          │           └── cf-memory v0.1.0 (*)
+          ├── ruvector-core v2.4.0 (*)
+          └── ruvector-turboquant v2.3.0
+              └── ruvector-core v2.4.0 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows-sys'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:265:1
+    │
+265 │ ╭ windows-sys 0.52.0 registry+https://github.com/rust-lang/crates.io-index
+266 │ │ windows-sys 0.61.2 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows-sys v0.52.0
+      └── ring v0.17.14
+          ├── rustls v0.23.46
+          │   ├── hyper-rustls v0.27.10
+          │   │   └── reqwest v0.12.28
+          │   │       └── ruvector-core v2.4.0
+          │   │           └── cf-memory v0.1.0
+          │   │               └── cf-orchestrator v0.1.0
+          │   │                   ├── cf-api v0.1.0
+          │   │                   │   └── cf-cli v0.1.0
+          │   │                   └── cf-evaluation v0.1.0
+          │   │                       └── cf-api v0.1.0 (*)
+          │   ├── reqwest v0.12.28 (*)
+          │   └── tokio-rustls v0.26.6
+          │       ├── hyper-rustls v0.27.10 (*)
+          │       └── reqwest v0.12.28 (*)
+          └── rustls-webpki v0.103.15
+              └── rustls v0.23.46 (*)
+    ├ windows-sys v0.61.2
+      ├── anstyle-query v1.1.5
+      │   └── anstream v1.0.0
+      │       └── env_logger v0.11.11
+      │           ├── anndists v0.1.5
+      │           │   └── hnsw_rs v0.3.5
+      │           │       └── ruvector-core v2.4.0
+      │           │           └── cf-memory v0.1.0
+      │           │               └── cf-orchestrator v0.1.0
+      │           │                   ├── cf-api v0.1.0
+      │           │                   │   └── cf-cli v0.1.0
+      │           │                   └── cf-evaluation v0.1.0
+      │           │                       └── cf-api v0.1.0 (*)
+      │           └── hnsw_rs v0.3.5 (*)
+      ├── anstyle-wincon v3.0.11
+      │   └── anstream v1.0.0 (*)
+      ├── errno v0.3.14
+      │   └── rustix v1.1.5
+      │       └── tempfile v3.27.0
+      │           ├── cf-evaluation v0.1.0 (*)
+      │           ├── (dev) cf-memory v0.1.0 (*)
+      │           └── (dev) cf-orchestrator v0.1.0 (*)
+      ├── mio v1.2.4
+      │   └── tokio v1.53.3
+      │       ├── hyper v1.12.0
+      │       │   ├── hyper-rustls v0.27.10
+      │       │   │   └── reqwest v0.12.28
+      │       │   │       └── ruvector-core v2.4.0 (*)
+      │       │   ├── hyper-util v0.1.21
+      │       │   │   ├── hyper-rustls v0.27.10 (*)
+      │       │   │   └── reqwest v0.12.28 (*)
+      │       │   └── reqwest v0.12.28 (*)
+      │       ├── hyper-rustls v0.27.10 (*)
+      │       ├── hyper-util v0.1.21 (*)
+      │       ├── reqwest v0.12.28 (*)
+      │       ├── tokio-rustls v0.26.6
+      │       │   ├── hyper-rustls v0.27.10 (*)
+      │       │   └── reqwest v0.12.28 (*)
+      │       ├── tower v0.5.3
+      │       │   ├── reqwest v0.12.28 (*)
+      │       │   └── tower-http v0.6.11
+      │       │       └── reqwest v0.12.28 (*)
+      │       └── wasm-bindgen-futures v0.4.79
+      │           └── reqwest v0.12.28 (*)
+      ├── rustix v1.1.5 (*)
+      ├── socket2 v0.6.5
+      │   ├── hyper-util v0.1.21 (*)
+      │   └── tokio v1.53.3 (*)
+      ├── tempfile v3.27.0 (*)
+      ├── tokio v1.53.3 (*)
+      └── winapi-util v0.1.11
+          ├── same-file v1.0.6
+          │   └── walkdir v2.5.0
+          │       └── sysctl v0.6.0
+          │           └── mmap-rs v0.7.0
+          │               └── hnsw_rs v0.3.5 (*)
+          └── walkdir v2.5.0 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows-targets'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:267:1
+    │
+267 │ ╭ windows-targets 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+268 │ │ windows-targets 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows-targets v0.48.5
+      └── windows v0.48.0
+          └── mmap-rs v0.7.0
+              └── hnsw_rs v0.3.5
+                  └── ruvector-core v2.4.0
+                      └── cf-memory v0.1.0
+                          └── cf-orchestrator v0.1.0
+                              ├── cf-api v0.1.0
+                              │   └── cf-cli v0.1.0
+                              └── cf-evaluation v0.1.0
+                                  └── cf-api v0.1.0 (*)
+    ├ windows-targets v0.52.6
+      └── windows-sys v0.52.0
+          └── ring v0.17.14
+              ├── rustls v0.23.46
+              │   ├── hyper-rustls v0.27.10
+              │   │   └── reqwest v0.12.28
+              │   │       └── ruvector-core v2.4.0
+              │   │           └── cf-memory v0.1.0
+              │   │               └── cf-orchestrator v0.1.0
+              │   │                   ├── cf-api v0.1.0
+              │   │                   │   └── cf-cli v0.1.0
+              │   │                   └── cf-evaluation v0.1.0
+              │   │                       └── cf-api v0.1.0 (*)
+              │   ├── reqwest v0.12.28 (*)
+              │   └── tokio-rustls v0.26.6
+              │       ├── hyper-rustls v0.27.10 (*)
+              │       └── reqwest v0.12.28 (*)
+              └── rustls-webpki v0.103.15
+                  └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_aarch64_gnullvm'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:269:1
+    │
+269 │ ╭ windows_aarch64_gnullvm 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+270 │ │ windows_aarch64_gnullvm 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰────────────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_aarch64_gnullvm v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_aarch64_gnullvm v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_aarch64_msvc'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:271:1
+    │
+271 │ ╭ windows_aarch64_msvc 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+272 │ │ windows_aarch64_msvc 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰─────────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_aarch64_msvc v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_aarch64_msvc v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_i686_gnu'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:273:1
+    │
+273 │ ╭ windows_i686_gnu 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+274 │ │ windows_i686_gnu 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰─────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_i686_gnu v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_i686_gnu v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_i686_msvc'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:276:1
+    │
+276 │ ╭ windows_i686_msvc 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+277 │ │ windows_i686_msvc 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰──────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_i686_msvc v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_i686_msvc v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_x86_64_gnu'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:278:1
+    │
+278 │ ╭ windows_x86_64_gnu 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+279 │ │ windows_x86_64_gnu 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰───────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_x86_64_gnu v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_x86_64_gnu v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_x86_64_gnullvm'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:280:1
+    │
+280 │ ╭ windows_x86_64_gnullvm 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+281 │ │ windows_x86_64_gnullvm 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰───────────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_x86_64_gnullvm v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_x86_64_gnullvm v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+warning[duplicate]: found 2 duplicate entries for crate 'windows_x86_64_msvc'
+    ┌─ /home/ruv/work/context-ferry/Cargo.lock:282:1
+    │
+282 │ ╭ windows_x86_64_msvc 0.48.5 registry+https://github.com/rust-lang/crates.io-index
+283 │ │ windows_x86_64_msvc 0.52.6 registry+https://github.com/rust-lang/crates.io-index
+    │ ╰────────────────────────────────────────────────────────────────────────────────┘ lock entries
+    │
+    ├ windows_x86_64_msvc v0.48.5
+      └── windows-targets v0.48.5
+          └── windows v0.48.0
+              └── mmap-rs v0.7.0
+                  └── hnsw_rs v0.3.5
+                      └── ruvector-core v2.4.0
+                          └── cf-memory v0.1.0
+                              └── cf-orchestrator v0.1.0
+                                  ├── cf-api v0.1.0
+                                  │   └── cf-cli v0.1.0
+                                  └── cf-evaluation v0.1.0
+                                      └── cf-api v0.1.0 (*)
+    ├ windows_x86_64_msvc v0.52.6
+      └── windows-targets v0.52.6
+          └── windows-sys v0.52.0
+              └── ring v0.17.14
+                  ├── rustls v0.23.46
+                  │   ├── hyper-rustls v0.27.10
+                  │   │   └── reqwest v0.12.28
+                  │   │       └── ruvector-core v2.4.0
+                  │   │           └── cf-memory v0.1.0
+                  │   │               └── cf-orchestrator v0.1.0
+                  │   │                   ├── cf-api v0.1.0
+                  │   │                   │   └── cf-cli v0.1.0
+                  │   │                   └── cf-evaluation v0.1.0
+                  │   │                       └── cf-api v0.1.0 (*)
+                  │   ├── reqwest v0.12.28 (*)
+                  │   └── tokio-rustls v0.26.6
+                  │       ├── hyper-rustls v0.27.10 (*)
+                  │       └── reqwest v0.12.28 (*)
+                  └── rustls-webpki v0.103.15
+                      └── rustls v0.23.46 (*)
+
+advisories ok, bans ok, licenses ok, sources ok

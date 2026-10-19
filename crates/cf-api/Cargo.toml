@@ -8,8 +8,8 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-orchestrator = { path = "../cf-orchestrator" }
-cf-evaluation = { path = "../cf-evaluation" }
-cf-metaharness = { path = "../cf-metaharness" }
+cf-orchestrator = { version = "0.1.0", path = "../cf-orchestrator" }
+cf-evaluation = { version = "0.1.0", path = "../cf-evaluation" }
+cf-metaharness = { version = "0.1.0", path = "../cf-metaharness" }
 serde_json.workspace = true
 thiserror.workspace = true

@@ -39,7 +39,19 @@ The workspace contains 23 meaningful crates covering typed domain values, intake
 
 ## Evaluation
 
-`evaluate` runs the combined system and six ingredient ablations over the same frozen workload. Observed results are published from source-bound evidence under `evidence/`; no synthetic metric is presented as a live-provider claim.
+The frozen workload produced these source-bound results:
+
+| Mode | Released | Selected | Tokens | Recall | Evidence | Robust gate | Replayed decisions | Objective |
+| --- | --- | ---: | ---: | --- | --- | --- | ---: | ---: |
+| combined | yes | 4 | 36 | yes | yes | yes | 1 | 37.0 |
+| no RuVector | yes | 4 | 36 | no | yes | yes | 1 | 37.0 |
+| no RVF | yes | 4 | 36 | yes | no | yes | 1 | 36.0 |
+| no tiktoken | no | 0 | 0 | no | no | no | 0 | 0.0 |
+| no conformal gate | yes | 4 | 36 | yes | yes | no | 1 | 36.0 |
+| enterprise only | yes | 4 | 35 | no | no | no | 1 | 35.0 |
+| Ruvnet only | yes | 2 | 34 | yes | yes | no | 0 | 18.3 |
+
+Removing tiktoken caused the frozen approximate counter to violate the risk ceiling and fail closed. Removing RuVector eliminated recall; removing RVF eliminated evidence; removing the conformal gate removed robust release assurance. See [raw evaluation evidence](evidence/raw/evaluation.json) and [integration evidence](evidence/integration-evidence.md).
 
 ## Safety and limitations
 

@@ -8,7 +8,7 @@ license.workspace = true
 path = "src/lib.rs"
 
 [dependencies]
-cf-types = { path = "../cf-types" }
-cf-selection = { path = "../cf-selection" }
+cf-types = { version = "0.1.0", path = "../cf-types" }
+cf-selection = { version = "0.1.0", path = "../cf-selection" }
 serde.workspace = true
 thiserror.workspace = true
