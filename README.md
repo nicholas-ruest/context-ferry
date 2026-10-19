@@ -48,7 +48,7 @@ The frozen workload produced these source-bound results:
 | no RVF | yes | 4 | 36 | yes | no | yes | 1 | 36.0 |
 | no tiktoken | no | 0 | 0 | no | no | no | 0 | 0.0 |
 | no conformal gate | yes | 4 | 36 | yes | yes | no | 1 | 36.0 |
-| enterprise only | yes | 4 | 35 | no | no | no | 1 | 35.0 |
+| enterprise only | yes | 4 | 36 | no | no | no | 1 | 35.0 |
 | Ruvnet only | yes | 2 | 34 | yes | yes | no | 0 | 18.3 |
 
 Removing tiktoken caused the frozen approximate counter to violate the risk ceiling and fail closed. Removing RuVector eliminated recall; removing RVF eliminated evidence; removing the conformal gate removed robust release assurance. See [raw evaluation evidence](evidence/raw/evaluation.json) and [integration evidence](evidence/integration-evidence.md).

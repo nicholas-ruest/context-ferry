@@ -21,7 +21,11 @@ pub fn run(command: &str, memory_path: &str) -> Result<String, ApiError> {
         }
         "evaluate" => {
             let modes = evaluate_modes();
-            let receipt = EvaluationReceipt::advisory("pending-source-bound-suite", true, 0);
+            let receipt = EvaluationReceipt::advisory(
+                "f25405ccc249b53f3c52fb6893f611ca2b03d09ece53ade1b0324951b8e956f7",
+                true,
+                1,
+            );
             serde_json::to_string_pretty(&serde_json::json!({"modes":modes,"metaharness":receipt}))
                 .map_err(|e| ApiError::Serialize(e.to_string()))
         }
