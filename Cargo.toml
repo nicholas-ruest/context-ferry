@@ -1,0 +1,24 @@
+[workspace]
+resolver = "2"
+members = ['crates/cf-types', 'crates/cf-request', 'crates/cf-events', 'crates/cf-policy', 'crates/cf-token-budget', 'crates/cf-tiktoken', 'crates/cf-memory', 'crates/cf-selection', 'crates/cf-conformal', 'crates/cf-capsule', 'crates/cf-rvf', 'crates/cf-ledger', 'crates/cf-transfer', 'crates/cf-verifier', 'crates/cf-recovery', 'crates/cf-telemetry', 'crates/cf-config', 'crates/cf-evaluation', 'crates/cf-orchestrator', 'crates/cf-api', 'crates/cf-cli', 'crates/cf-ruflo', 'crates/cf-metaharness']
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+
+[workspace.dependencies]
+anyhow = "1.0.100"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
+thiserror = "2.0.17"
+tempfile = "3.23.0"
+ruvector-core = "2.4.0"
+rvf-crypto = "0.2.0"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "deny"
+pedantic = "deny"

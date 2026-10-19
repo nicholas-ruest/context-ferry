@@ -1,0 +1,5 @@
+use cf_selection::SelectionPlan;use cf_types::{ContextEvent,Destination};use serde::{Deserialize,Serialize};use thiserror::Error;
+#[derive(Debug,Error)]pub enum CapsuleError{#[error("capsule empty")]Empty,#[error("capsule over budget")]OverBudget}
+#[derive(Clone,Debug,Serialize,Deserialize)]pub struct ContextCapsule{pub id:String,pub destination:Destination,pub events:Vec<ContextEvent>,pub used_tokens:u32,pub budget:u32,pub risk_upper:f64}
+impl ContextCapsule{pub fn build(id:&str,destination:Destination,plan:SelectionPlan,budget:u32,risk_upper:f64)->Result<Self,CapsuleError>{if plan.selected.is_empty(){return Err(CapsuleError::Empty)}if plan.used_tokens>budget{return Err(CapsuleError::OverBudget)}Ok(Self{id:id.into(),destination,events:plan.selected,used_tokens:plan.used_tokens,budget,risk_upper})}}
+#[cfg(test)]mod tests{use super::*;use cf_types::Sensitivity;#[test]fn rejects_empty(){let d=Destination::new("x",Sensitivity::Public).unwrap();let p=SelectionPlan{selected:vec![],used_tokens:0,covered_kinds:0};assert!(ContextCapsule::build("c",d,p,1,0.0).is_err());}}

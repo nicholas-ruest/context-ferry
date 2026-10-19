@@ -1,0 +1,5 @@
+use std::io::Write; use std::process::{Command,Stdio}; use thiserror::Error;
+#[derive(Debug,Error)] pub enum TokenizerError {#[error("spawn tiktoken: {0}")]Spawn(String),#[error("tiktoken returned failure")]Failure,#[error("invalid count")]Parse}
+pub struct TiktokenCounter;
+impl TiktokenCounter {pub fn count(text:&str)->Result<u32,TokenizerError>{let mut child=Command::new("python3").args(["-c","import sys,tiktoken; e=tiktoken.get_encoding('cl100k_base'); print(len(e.encode(sys.stdin.read())))"]).stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().map_err(|e|TokenizerError::Spawn(e.to_string()))?;child.stdin.as_mut().ok_or(TokenizerError::Failure)?.write_all(text.as_bytes()).map_err(|e|TokenizerError::Spawn(e.to_string()))?;let out=child.wait_with_output().map_err(|e|TokenizerError::Spawn(e.to_string()))?;if !out.status.success(){return Err(TokenizerError::Failure)}String::from_utf8_lossy(&out.stdout).trim().parse().map_err(|_|TokenizerError::Parse)}}
+#[cfg(test)]mod tests{use super::*;#[test]fn executes_official_tokenizer(){let n=TiktokenCounter::count("hello world").unwrap();assert_eq!(n,2);}}

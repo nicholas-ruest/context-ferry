@@ -1,0 +1,11 @@
+[package]
+name = "cf-conformal"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+cf-selection = { path = "../cf-selection" }
