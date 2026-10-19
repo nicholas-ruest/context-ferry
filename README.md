@@ -53,6 +53,12 @@ The frozen workload produced these source-bound results:
 
 Removing tiktoken caused the frozen approximate counter to violate the risk ceiling and fail closed. Removing RuVector eliminated recall; removing RVF eliminated evidence; removing the conformal gate removed robust release assurance. See [raw evaluation evidence](evidence/raw/evaluation.json) and [integration evidence](evidence/integration-evidence.md).
 
+## Publication
+
+- [Research dossier](https://gist.github.com/nicholas-ruest/6ced226e3516f9e9e834f058a039c7ed)
+- [Build dossier](https://gist.github.com/nicholas-ruest/5f6bd014e579c72433ad7ab0e5a3dbca)
+- [Validation](docs/validation.md) and [semantic review](evidence/semantic-review.md)
+
 ## Safety and limitations
 
 - No paid model API is called; the destination is represented as a typed boundary.
